@@ -1,12 +1,12 @@
 const sounds = {
-    'w':'crash',
-    'a':'tom-high',
-    's':'hit-hat',
+    'w':'crashcymbal',
+    'a':'tomhigh',
+    's':'hithatclosed',
     'd':'snare',
-    'j':'tom-mid',
-    'k':'tom-floor',
+    'j':'tommid',
+    'k':'tomfloor',
     'l':'ride',
-    ' ': 'space'
+    ' ': 'kickdrum'
 };
 
 
@@ -31,13 +31,16 @@ document.addEventListener('keydown', function(e){
 });
 
 function playSound(key){
-    console.log('playing sound for key:', sounds[key]);
+    const soundName = sounds[key];
+    const audio = new Audio(`sounds/${soundName}.wav`);
+    audio.currentTime = 0;
+    audio.play();
 }
 function animateDrum(drum){
     drum.style.transform = 'scale(0.9)';
     drum.style.filter = 'brightness(1.3)';
     setTimeout(()=>{
         drum.style.transform = 'scale(1)';
-        drum.style.filter = brightness(1);
+        drum.style.filter = 'brightness(1)';
     }, 100);
 }
