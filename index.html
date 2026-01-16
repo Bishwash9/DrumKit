@@ -6,25 +6,151 @@
     <title>Drumkit</title>
     <!-- Use a working font from Google Fonts, for example 'IBM Plex Sans' -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <style>
-    /* Update the font-family to the new font name */
-    *{
-        font-family: 'Poppins',sans-serif;
+     * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+    .drum{
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
     }
+    .drum:active{
+        transform: scale(0.95);
+    }
+    .drum-label{
+        position:absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2vw;
+        font-weight: bold;
+        color: whitesmoke;
+        text-shadow: 0.2vw 0.2vw 0.5vw rgba(0,0,0,0.5);
+        pointer-events: none;
+    }
+    .crash-left{
+        width: 10vw;
+        height: 10vw;
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #c9a829 100%);
+        border:0.3vw solid #b8941f;
+        border-radius: 50%;
+        box-shadow:0 0.5vh 1.5vh rgba(0,0,0,0.4);
+    }
+    .hihat {
+        height: 8.5vw;
+        width: 8.5vw;
+        background: linear-gradient(135deg, #e6e6e6 0%, #c0c0c0 50%, #8c8c8c 100%);
+        border-radius: 50%;
+        box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
+        border: 0.3vw solid #707070;
+    }
+    .snare{
+        height: 10.5vw;
+        width: 10.5vw;
+        background: linear-gradient(135deg, #f0f0f0 0%, #d4d4d4 50%, #a8a8a8 100%);
+        border-radius: 50%;
+        box-shadow: 0 0.7vh 2vh rgba(0, 0, 0, 0.5);
+        border: 0.4vw solid #606060;
+    }
+    .tom{
+        border-radius:50%;
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #962d22 100%);
+        border: 0.4vw solid #7a1f18;
+        box-shadow:0 0.7vh 2vh rgba(0, 0, 0, 0.5);
+    }
+    .tom-high{
+        width: 9vw;
+        height: 9vw;
+    }
+    .tom-mid {
+        height: 10vw;
+        width: 10vw;
+    }    
+    .tom-floor {
+        height: 11.5vw;
+        width: 11.5vw;
+    }
+    .ride {
+        height: 11.5vw;
+        width: 11.5vw;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #c9a829 100%);
+        box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.4);
+        border: 0.3vw solid #b8941f;
+    }
+    .bass {
+         height: 13vw;
+         width: 13vw;
+         background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #1a252f 100%);
+         border: 0.5vw solid #0f1419;
+         box-shadow: 0 1vh 2.5vh rgba(0, 0, 0, 0.6);
+         border-radius: 50%;
+    }
+
+
 </style>
-<body>
-    <div class="bg-indigo-800 h-screen text-center">
-        <h1 class="text-6xl font-bold text-blue-400">Drum 🥁 Kit</h1>
-        <div class="flex gap-12 items-center justify-center text-indigo-600 font-bold mt-20 text-4xl">
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">w</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">a</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">s</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">d</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">j</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">k</button>
-            <button class="border border-white border-2 bg-white  rounded-3xl w-40 h-40">l</button>
+<body class="bg-[#36454F] min-h-screen overflow-hidden "> 
+   <div class="relative flex justify-center items-center" style="height: 70vh;">
+            
+            <!-- Top Row: Cymbals and High Tom -->
+            <div class="absolute" style="top: 0; left: 15%; display: flex; gap: 4vw;">
+                <!-- Crash Cymbal Left (W) -->
+                <div class="drum crash-left" data-key="w">
+                    <div class="drum-label">W</div>
+                </div>
+                
+                <!-- High Tom (A) -->
+                <div class="drum tom tom-high" data-key="a" style="margin-top: 5vh;">
+                    <div class="drum-label">A</div>
+                </div>
+            </div>
+            
+            <!-- Middle Row: Hi-Hat, Snare, Mid Tom, Floor Tom -->
+            <div class="absolute" style="top: 25vh; left: 50%; transform: translateX(-50%); display: flex; gap: 3vw; align-items: flex-end;">
+                <!-- Hi-Hat (S) -->
+                <div class="drum hihat" data-key="s">
+                    <div class="drum-label">S</div>
+                </div>
+                
+                <!-- Snare (D) -->
+                <div class="drum snare" data-key="d">
+                    <div class="drum-label">D</div>
+                </div>
+                
+                <!-- Mid Tom (J) -->
+                <div class="drum tom tom-mid" data-key="j" style="margin-bottom: 4vh;">
+                    <div class="drum-label">J</div>
+                </div>
+                
+                <!-- Floor Tom (K) -->
+                <div class="drum tom tom-floor" data-key="k">
+                    <div class="drum-label">K</div>
+                </div>
+            </div>
+            
+            <!-- Right: Ride Cymbal (L) -->
+            <div class="absolute" style="top: 2vh; right: 15%;">
+                <div class="drum ride" data-key="l">
+                    <div class="drum-label">L</div>
+                </div>
+            </div>
+            
+            <!-- Bottom: Bass Drum (Space) -->
+            <div class="absolute" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+                <div class="drum bass" data-key=" ">
+                    <div class="drum-label" style="font-size: 1.5vw;">SPACE</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="text-center" style="margin-top: 4vh;">
+            <p class="text-white" style="font-size: 1.8vw;">Press the keys or click the drums to play!</p>
+            <p  style="font-size:1vw; color: wheat; margin-top: 1.2vh;">Have Fun...</p>
         </div>
     </div>
 </body>
