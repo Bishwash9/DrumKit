@@ -1,7 +1,7 @@
 //initializing audio context
 let audioContext;
 let isPlaying = false;
-let tempo = 160;
+let tempo = '';
 let nextNoteTime = 0.0;
 let lookAhead = 25.0 // this is for how frequently to call scheduling function (in milliseconds)
 let scheduleAheadTime = 0.1; // how far ahead to schedule audio (sec)
@@ -36,7 +36,7 @@ async function initAudioContext(){
 
 
 
-//create a oscillator for metronome sound tiktik
+//create a source for metronome sound tiktik
 function playTick(time){
     if(!clickBuffer) return; 
 
