@@ -7,6 +7,23 @@ let lookAhead = 25.0 // this is for how frequently to call scheduling function (
 let scheduleAheadTime = 0.1; // how far ahead to schedule audio (sec)
 
 let clickBuffer;
+let timerID;
+
+
+let currentBeat = 1;
+let beatsPerMeasure = 4;
+
+
+//getting sabaiko id
+const playButton = document.getElementById("play-button");
+const buttonText = document.getElementById("button-text");
+const tempoSlider = document.getElementById("tempo-slider");
+const tempoInput = document.getElementById("tempo-input");
+const timeSignature = document.getElementById("time-signature");
+const pulseIndicator = document.getElementById("pulse-indicator");
+const bpmDisplay = document.getElementById("bpm-display");
+
+
 
 //function to load audio file
 async function loadClickSound(url){
@@ -77,7 +94,12 @@ function nextNote(){
     nextNoteTime += secondsPerBeat;
 }
 
-let timerID;
+//function to update tempo
+function updateTempo(){
+    
+}
+
+
 
 //start and stop metronome
 function startStopMetronome(){
@@ -86,6 +108,8 @@ function startStopMetronome(){
         isPlaying = false;
         clearInterval(timerID);//stop the loop
 
+        buttonText.textContent = "Start";
+
         //reset nextnotetime to current time so it starts on time on next play
         nextNoteTime = audioContext.currentTime;
         console.log("Metronome Stopped");
@@ -93,6 +117,7 @@ function startStopMetronome(){
         isPlaying = true;
         nextNoteTime = audioContext.currentTime;
         timerID = setInterval(scheduler,lookAhead); //start the scheduling loop
+        buttonText.textContent = "Pause";
         console.log("Metronome Playing");
     }
     })
@@ -100,9 +125,4 @@ function startStopMetronome(){
    
 }
 
-document.getElementById('play-button').addEventListener('click', startStopMetronome);
 
-document.getElementById('change-tempo').addEventListener('input', (event)=>{
-   tempo = event.target.value;
-    console.log(`tempo changed to ${tempo} BPM`);
-})
