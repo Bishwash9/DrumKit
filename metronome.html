@@ -3,16 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Metronome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>
-        <button id="play-button">></button>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-slate-800/50 backdrop-blur-sm rounded-3xl shadow-2xl p-8 w-full max-w-md border border-purple-500/20">
+        <!-- Visual Pulse Indicator -->
+        <div class="flex justify-center mb-8">
+            <div id="pulse-indicator" class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg transition-transform duration-100 flex items-center justify-center">
+                <div class="w-28 h-28 rounded-full bg-slate-800 flex items-center justify-center">
+                    <span id="beat-count" class="text-4xl font-bold text-purple-400">1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BPM Display -->
+        <div class="text-center mb-6">
+            <div class="text-6xl font-bold text-white mb-2" id="bpm-display">120</div>
+            <div class="text-purple-300 text-sm uppercase tracking-wider">BPM</div>
+        </div>
+
+        <!-- Tempo Slider -->
+        <div class="mb-6">
+            <input 
+                type="range" 
+                id="tempo-slider" 
+                min="40" 
+                max="240" 
+                value="120" 
+                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+            >
+            <div class="flex justify-between text-xs text-slate-400 mt-2">
+                <span>40</span>
+                <span>240</span>
+            </div>
+        </div>
+
+        <!-- Tempo Input -->
+        <div class="mb-6">
+            <label class="block text-purple-300 text-sm font-semibold mb-2">Enter Tempo:</label>
+            <input 
+                id="change-tempo" 
+                type="number" 
+                min="40" 
+                max="240" 
+                value="120"
+                class="w-full bg-slate-700 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 transition-all"
+                placeholder="40-240 BPM"
+            >
+        </div>
+
+        <!-- Time Signature -->
+        <div class="mb-6">
+            <label class="block text-purple-300 text-sm font-semibold mb-2">Time Signature:</label>
+            <select id="time-signature" class="w-full bg-slate-700 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 transition-all">
+                <option value="4">4/4</option>
+                <option value="3">3/4</option>
+                <option value="2">2/4</option>
+                <option value="6">6/8</option>
+            </select>
+        </div>
+
+        <!-- Play/Pause Button -->
+        <button 
+            id="play-button" 
+            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
+        >
+            <span id="button-text">▶ Start</span>
+        </button>
+
+        <!-- Visual Beat Indicators -->
+        <div id="beat-indicators" class="flex justify-center gap-2 mt-6">
+            <!-- Will be populated by JavaScript -->
+        </div>
     </div>
-    <div>
-        <label for="">Enter Your Tempo:</label>
-        <input id="change-tempo" type="text">
-    </div>
-</body>
-<script src="testingMetronome.js"></script>
-</html>
