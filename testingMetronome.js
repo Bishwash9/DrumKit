@@ -95,9 +95,42 @@ function nextNote(){
 }
 
 //function to update tempo
-function updateTempo(){
-    
+function updateTempo(value){
+    value = Math.max(40, Math.min(240, parseInt(value) || 120));
+    tempo = value;
+    tempoSlider.value = value;
+    tempoInput.value = value;
+    bpmDisplay.textContent = value;
+    console.log(`Tempo changed to ${tempo} BPM`);
 }
+
+function updateBeatIndicators(){
+    beatsPerMeasure = parseInt(timeSignature.value);
+    beatsIndicators.innerHTML = '';
+    for(let i =0; i<beatsPerMeasure; i++){
+        const indicator = document.createElement('div');
+        indicator.className = 'w-3 h-3 rounded-full bg-slate-600 transition-all duration-100';
+        indicator.id = `indicators=${i}`;
+        beatsIndicators.appendChild(indicator); 
+    }
+}
+
+//paybutton
+playButton.addEventListener('click', startStopMetronome);
+
+document.getElementById('change-tempo').addEventListener('input',(event)=>{
+    updateTempo(event.targe.value);
+});
+
+tempoSlider.addEventListener('input', (event)=>{
+    updateTempo(event.target.value);
+});
+
+timeSignature.addEventListener('change',()=>{
+    updateBeatIndicators();
+    currentBeat = 1;
+    beatCount.textContent = '1';
+});
 
 
 
@@ -120,7 +153,7 @@ function startStopMetronome(){
         buttonText.textContent = "Pause";
         console.log("Metronome Playing");
     }
-    })
+    });
 
    
 }
