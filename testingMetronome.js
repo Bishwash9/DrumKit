@@ -107,9 +107,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     //event listeners
     playButton.addEventListener('click', startStopMetronome);
 
-    document.getElementById('change-tempo').addEventListener('input', (event)=>{
-        updateTempo(event.target.value); // FIXED: was "targe"
-    });
+    const changeTempoInput = document.getElementById('change-tempo');
+    if (changeTempoInput) {
+        changeTempoInput.addEventListener('input', (event)=>{
+            updateTempo(event.target.value); // FIXED: was "targe"
+        });
+    }
 
     tempoSlider.addEventListener('input', (event)=>{
         updateTempo(event.target.value);
